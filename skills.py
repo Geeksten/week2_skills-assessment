@@ -37,27 +37,9 @@ def count_unique(input_string):
     word_list = input_string.split()
     for word in word_list:
         cntr[word] += 1
+        word_frequencies = dict(cntr)
 
-    return cntr
-    
-    
-print (count_unique("rose is a rose is a rose"))
-
-print (count_unique("Porcupine see, porcupine do."))
-
-print (count_unique("each word appears once"))
-
-
-#print count_unique("each word appears once"))
-     #   {'appears': 1, 'each': 1, 'once': 1, 'word': 1}
-
-     #print_dict(count_unique("rose is a rose is a rose"))
-     #   {'a': 2, 'is': 2, 'rose': 3}
-
-     #print_dict(count_unique("Porcupine see, porcupine do."))
-     #   {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
-
-    #return {}
+    return word_frequencies
 
 
 def find_common_items(list1, list2):
@@ -98,161 +80,236 @@ def find_common_items(list1, list2):
     return common_items
 
 
-# def find_unique_common_items(list1, list2):
-#     """Produce the set of *unique* common items in two lists.
+def find_unique_common_items(list1, list2):
+    """Produce the set of *unique* common items in two lists.
 
-#     Given two lists, return a list of the *unique* common items shared between
-#     the lists.
+    Given two lists, return a list of the *unique* common items shared between
+    the lists.
 
-#     IMPORTANT: you may not use 'if ___ in ___' or the method 'index'.
-
-
-#     Just like `find_common_items`, this should find [1, 2]:
-
-#         >>> sorted(find_unique_common_items([1, 2, 3, 4], [1, 2]))
-#         [1, 2]
-
-#     However, now we only want unique items, so for these lists, don't show
-#     more than 1 or 2 once:
-
-#         >>> sorted(find_unique_common_items([1, 2, 3, 4], [1, 1, 2, 2]))
-#         [1, 2]
-
-#     """
-
-#     return []
+    IMPORTANT: you may not use 'if ___ in ___' or the method 'index'.
 
 
-# def get_sum_zero_pairs(input_list):
-#     """Given a list of numbers, return list of x,y number pair lists where x + y == 0.
+    Just like `find_common_items`, this should find [1, 2]:
 
-#     Given a list of numbers, add up each individual pair of numbers.
-#     Return a list of each pair of numbers that adds up to 0.
+        >>> sorted(find_unique_common_items([1, 2, 3, 4], [1, 2]))
+        [1, 2]
 
+    However, now we only want unique items, so for these lists, don't show
+    more than 1 or 2 once:
 
-#     For example:
+        >>> sorted(find_unique_common_items([1, 2, 3, 4], [1, 1, 2, 2]))
+        [1, 2]
 
-#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1]) )
-#         [[-2, 2], [-1, 1]]
+    """
+    list3 = set(list1) & set(list2)
+    list4 = sorted(list3, key=lambda k: list1.index(k))
+    final_list = list(list4)
 
-#         >>> sort_pairs( get_sum_zero_pairs([3, -3, 2, 1, -2, -1]) )
-#         [[-3, 3], [-2, 2], [-1, 1]]
-
-#     This should always be a unique list, even if there are
-#     duplicates in the input list:
-
-#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1]) )
-#         [[-2, 2], [-1, 1]]
-
-#     Of course, if there are one or more zeros to pair together,
-#     that's fine, too (even a single zero can pair with itself):
-
-#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1, 0]) )
-#         [[-2, 2], [-1, 1], [0, 0]]
-
-#     """
-
-#     return []
+    return final_list
 
 
-# def remove_duplicates(words):
-#     """Given a list of words, return the list with duplicates removed.
 
-#     Do this without using a Python set.
+def get_sum_zero_pairs(input_list):
+    """Given a list of numbers, return list of x,y number pair lists where x + y == 0.
 
-#     For example:
-
-#         >>> sorted(remove_duplicates(
-#         ...     ["rose", "is", "a", "rose", "is", "a", "rose"]))
-#         ['a', 'is', 'rose']
-
-#     You should treat differently-capitalized words as different:
-
-#         >>> sorted(remove_duplicates(
-#         ...     ["Rose", "is", "a", "rose", "is", "a", "rose"]))
-#         ['Rose', 'a', 'is', 'rose']
-
-#     """
-
-#     return []
+    Given a list of numbers, add up each individual pair of numbers.
+    Return a list of each pair of numbers that adds up to 0.
 
 
-# def encode(phrase):
-#     """Given a phrase, return the encoded string.
+    For example:
 
-#     Replace all "e" characters with "p",
-#     replace "a" characters with "d", replace "t" characters with "o",
-#     and "i" characters with "u".
+        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1]) )
+        [[-2, 2], [-1, 1]]
+        >>> sort_pairs( get_sum_zero_pairs([3, -3, 2, 1, -2, -1]) )
+        [[-3, 3], [-2, 2], [-1, 1]]
 
-#     For example:
+    This should always be a unique list, even if there are
+    duplicates in the input list:
 
-#         >>> encode("You are a beautiful, talented, brilliant, powerful musk ox.")
-#         'You drp d bpduouful, odlpnopd, brulludno, powprful musk ox.'
-#     """
-#     return ''
+        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1]) )
+        [[-2, 2], [-1, 1]]
+
+    Of course, if there are one or more zeros to pair together,
+    that's fine, too (even a single zero can pair with itself):
+
+        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1, 0]) )
+        [[-2, 2], [-1, 1], [0, 0]]
+
+    """
+    num_dict = {}
+    pair_list = []
+
+    # For each number in input_list
+    for num in input_list:
+        # Iterate through input list again to compare each number to each
+        # other number, including the number itself
+        for x in input_list:
+            # If the number plus the other number equals 0
+            if num + x == 0:
+                # and if the number is less than or equal to the other number
+                # (so we don't end up with duplicate pairs)
+                if num <= x:
+                    # Add the numbers as a key, value pair
+                    num_dict[num] = x
+    # For each key value pair in num_dict, unpack the key and value and
+    # add them as a nested list inside pair_list
+    for key, value in num_dict.iteritems():
+        pair_list.append([key, value])
+
+    return pair_list
 
 
-# def sort_by_word_length(words):
-#     """Given list of words, return list of ascending [(len, [words])].
+def remove_duplicates(words):
+    """Given a list of words, return the list with duplicates removed.
 
-#     Given a list of words, return a list of tuples, ordered by word-length.
-#     Each tuple should have two items--the length of the words for that
-#     word-length, and the list of words of that word length.
+    Do this without using a Python set.
 
-#     For example:
+    For example:
 
-#         >>> sort_by_word_length(["ok", "an", "apple", "a", "day"])
-#         [(1, ['a']), (2, ['ok', 'an']), (3, ['day']), (5, ['apple'])]
+        >>> sorted(remove_duplicates(
+        ...     ["rose", "is", "a", "rose", "is", "a", "rose"]))
+        ['a', 'is', 'rose']
 
-#     """
+    You should treat differently-capitalized words as different:
 
-#     return []
+        >>> sorted(remove_duplicates(
+        ...     ["Rose", "is", "a", "rose", "is", "a", "rose"]))
+        ['Rose', 'a', 'is', 'rose']
+
+    """
+    unique_list = sorted(Counter(words), key=lambda w: w.lower())
+    new_list = sorted(unique_list)
+    return new_list
 
 
-# def get_pirate_talk(phrase):
-#     """Translate phrase to pirate talk.
+def encode(phrase):
+    """Given a phrase, return the encoded string.
+    Replace all "e" characters with "p",
+    replace "a" characters with "d", replace "t" characters with "o",
+    and "i" characters with "u".
+    For example:
+        >>> encode("You are a beautiful, talented, brilliant, powerful musk ox.")
+        'You drp d bpduouful, odlpnopd, brulludno, powprful musk ox.'
+    """
 
-#     Given a phrase, translate each word to the Pirate-speak equivalent.
-#     Words that cannot be translated into Pirate-speak should pass through
-#     unchanged. Return the resulting sentence.
+    encoding_map = {'e': 'p',
+                    'a': 'd',
+                    't': 'o',
+                    'i': 'u'
+                    }
 
-#     Here's a table of English to Pirate translations:
+    phrase_list = list(phrase)
 
-#     English     Pirate
-#     ----------  ----------------
-#     sir         matey
-#     hotel       fleabag inn
-#     student     swabbie
-#     boy         matey
-#     madam       proud beauty
-#     professor   foul blaggart
-#     restaurant  galley
-#     your        yer
-#     excuse      arr
-#     students    swabbies
-#     are         be
-#     lawyer      foul blaggart
-#     the         th'
-#     restroom    head
-#     my          me
-#     hello       avast
-#     is          be
-#     man         matey
+    for i in range(len(phrase_list)):
+            if phrase_list[i] in encoding_map.keys():
+                phrase_list[i] = encoding_map[phrase_list[i]]
 
-#     For example:
+    phrase = ''.join(phrase_list)
 
-#         >>> get_pirate_talk("my student is not a man")
-#         'me swabbie be not a matey'
+    return phrase
 
-#     You should treat words with punctuation as if they were different
-#     words:
 
-#         >>> get_pirate_talk("my student is not a man!")
-#         'me swabbie be not a man!'
+def sort_by_word_length(words):
+    """Given list of words, return list of ascending [(len, [words])].
 
-#     """
+    Given a list of words, return a list of tuples, ordered by word-length.
+    Each tuple should have two items--the length of the words for that
+    word-length, and the list of words of that word length.
 
-#     return ""
+    For example:
+
+        >>> sort_by_word_length(["ok", "an", "apple", "a", "day"])
+        [(1, ['a']), (2, ['ok', 'an']), (3, ['day']), (5, ['apple'])]
+
+    """
+    word_dict = {}
+    word_list = []
+
+    for word in words:
+
+        if word_dict.get(len(word), 0) != 0:
+            word_dict[len(word)].append(word)
+        else:
+            word_dict[len(word)] = [word]
+
+    # print word_dict
+
+    for k, v in word_dict.iteritems():
+        word_list.append((k, v))
+
+    return word_list
+
+def get_pirate_talk(phrase):
+    """Translate phrase to pirate talk.
+
+    Given a phrase, translate each word to the Pirate-speak equivalent.
+    Words that cannot be translated into Pirate-speak should pass through
+    unchanged. Return the resulting sentence.
+
+    Here's a table of English to Pirate translations:
+
+    English     Pirate
+    ----------  ----------------
+    sir         matey
+    hotel       fleabag inn
+    student     swabbie
+    boy         matey
+    madam       proud beauty
+    professor   foul blaggart
+    restaurant  galley
+    your        yer
+    excuse      arr
+    students    swabbies
+    are         be
+    lawyer      foul blaggart
+    the         th'
+    restroom    head
+    my          me
+    hello       avast
+    is          be
+    man         matey
+
+    For example:
+
+        >>> get_pirate_talk("my student is not a man")
+        'me swabbie be not a matey'
+
+    You should treat words with punctuation as if they were different
+    words:
+
+        >>> get_pirate_talk("my student is not a man!")
+        'me swabbie be not a man!'
+
+    """
+
+    translator = {
+        'sir': 'matey',
+        'hotel': 'fleabag inn',
+        'student': 'swabbie',
+        'madam': 'proud beauty',
+        'professor': 'foul blaggart',
+        'restaurant': 'galley',
+        'your': 'yer',
+        'excuse': 'arr',
+        'students': 'swabbies',
+        'are': 'be',
+        'lawyer': 'foul blaggart',
+        'the': "th\'",
+        'restroom': 'head',
+        'my': 'me',
+        'hello': 'avast',
+        'is': 'be',
+        'man': 'matey'
+    }
+
+    phrase_list = phrase.split()
+    for i in range(len(phrase_list)):
+        if phrase_list[i] in translator.keys():
+            phrase_list[i] = translator[phrase_list[i]]
+
+    to_print = ' '.join(phrase_list)
+
+    return to_print
 
 # # End of skills. See below for advanced problems.
 # # To work on them, set ADVANCED=True at the top of this file.
