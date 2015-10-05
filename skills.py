@@ -101,12 +101,26 @@ def find_unique_common_items(list1, list2):
         [1, 2]
 
     """
-    list3 = set(list1) & set(list2)
-    list4 = sorted(list3, key=lambda k: list1.index(k))
-    final_list = list(list4)
+    #first solution then realized could not use index
+    #list3 = set(list1) & set(list2)
+    #list4 = sorted(list3, key=lambda k: list1.index(k))
+    #final_list = list(list4)
+
+    dict1 = {}
+    dict2 = {}
+    final_list = []
+
+    for num in list1:
+        dict1[num] = 'in list'
+
+    for num in list2:
+        dict2[num] = 'in list'
+
+    for key in dict1:
+        if dict2.get(key, 0) == 'in list':
+            final_list.append(key)
 
     return final_list
-
 
 
 def get_sum_zero_pairs(input_list):
@@ -177,8 +191,15 @@ def remove_duplicates(words):
         ['Rose', 'a', 'is', 'rose']
 
     """
-    unique_list = sorted(Counter(words), key=lambda w: w.lower())
-    new_list = sorted(unique_list)
+    unique_words = {}
+
+    for word in words:
+        unique_words[word] = unique_words.get(word, 1)
+
+    #we want the keys in the dictionary to help us create a list
+    #also need the list sorted
+    new_list = sorted(unique_words.keys())
+
     return new_list
 
 
